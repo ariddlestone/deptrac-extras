@@ -77,8 +77,14 @@ class ClassLikeDocCollectorTest extends TestCase
         ];
 
         yield [
+            ['value' => '@package\s+MyPackage'],
+            '@package MyPackageExtension',
+            true,
+        ];
+
+        yield [
             ['value' => '@package\s+MyPackage$'],
-            '@package MyPackageAndSome',
+            '@package MyPackageExtension',
             false,
         ];
 
