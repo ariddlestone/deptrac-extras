@@ -1,0 +1,25 @@
+{
+    "name": "ariddlestone/deptrac-extras",
+    "description": "Extra collectors for deptrac",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Riddlestone"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ARiddlestone\\DeptracExtras\\": "src/"
+        }
+    },
+    "require-dev": {
+        "qossmic/deptrac": "^1.0",
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ARiddlestone\\DeptracExtras\\Tests\\": "tests/"
+        }
+    }
+}
