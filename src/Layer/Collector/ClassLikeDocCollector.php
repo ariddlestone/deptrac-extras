@@ -2,6 +2,7 @@
 
 namespace ARiddlestone\DeptracExtras\Layer\Collector;
 
+use LogicException;
 use Qossmic\Deptrac\Contract\Ast\TokenReferenceInterface;
 use Qossmic\Deptrac\Contract\Layer\CollectorInterface;
 use Qossmic\Deptrac\Core\Ast\AstMap\ClassLike\ClassLikeReference;
@@ -27,6 +28,10 @@ class ClassLikeDocCollector implements CollectorInterface
 
     private function getPattern(array $config): string
     {
+        if (!isset($config['value']) || !is_string($config['value'])) {
+            throw new LogicException('ClassLikeDocCollector needs the value configuration.');
+        }
+
         return '/' . $config['value'] . '/im';
     }
 

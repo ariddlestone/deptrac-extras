@@ -25,7 +25,8 @@
     },
     "scripts": {
         "phpmd": "vendor-bin/phpmd/vendor/bin/phpmd src ansi cleancode,codesize,controversial,design,naming,unusedcode",
-        "phpmd-github": "vendor-bin/phpmd/vendor/bin/phpmd src github cleancode,codesize,controversial,design,naming,unusedcode"
+        "phpmd-github": "vendor-bin/phpmd/vendor/bin/phpmd src github cleancode,codesize,controversial,design,naming,unusedcode",
+        "phpunit": "phpunit"
     },
     "config": {
         "allow-plugins": {

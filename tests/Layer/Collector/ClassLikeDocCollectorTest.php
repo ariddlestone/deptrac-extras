@@ -3,6 +3,7 @@
 namespace ARiddlestone\DeptracExtras\Tests\Layer\Collector;
 
 use ARiddlestone\DeptracExtras\Layer\Collector\ClassLikeDocCollector;
+use LogicException;
 use PhpParser\Comment\Doc;
 use PhpParser\Node\Stmt\ClassLike;
 use PHPUnit\Framework\TestCase;
@@ -77,8 +78,26 @@ class ClassLikeDocCollectorTest extends TestCase
 
         yield [
             ['value' => '@package\s+MyPackage$'],
+            '@package MyPackageAndSome',
+            false,
+        ];
+
+        yield [
+            ['value' => '@package\s+MyPackage$'],
             "\n@package MyPackage\n",
             true,
         ];
+    }
+
+    /**
+     * @throws \PHPUnit\Framework\MockObject\Exception
+     *
+     * @covers \ARiddlestone\DeptracExtras\Layer\Collector\ClassLikeDocCollector::satisfy
+     */
+    public function testMissingConfigurationValueForSatisfy(): void
+    {
+        $this->expectException(LogicException::class);
+
+        $this->collector->satisfy([], $this->createMock(ClassLikeReference::class));
     }
 }
