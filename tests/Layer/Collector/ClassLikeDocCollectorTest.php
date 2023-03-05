@@ -54,13 +54,13 @@ class ClassLikeDocCollectorTest extends TestCase
     {
         yield [
             ['value' => '@package MyPackage'],
-            '@package MyPackage',
+            self::wrapComment('@package MyPackage'),
             true,
         ];
 
         yield [
             ['value' => '@package MyPackage'],
-            '@package SomeOtherPackage',
+            self::wrapComment('@package SomeOtherPackage'),
             false,
         ];
 
@@ -72,27 +72,32 @@ class ClassLikeDocCollectorTest extends TestCase
 
         yield [
             ['value' => '@package\s+MyPackage$'],
-            '@package MyPackage',
+            self::wrapComment('@package MyPackage'),
             true,
         ];
 
         yield [
             ['value' => '@package\s+MyPackage'],
-            '@package MyPackageExtension',
+            self::wrapComment('@package MyPackageExtension'),
             true,
         ];
 
         yield [
             ['value' => '@package\s+MyPackage$'],
-            '@package MyPackageExtension',
+            self::wrapComment("@package MyPackageExtension"),
             false,
         ];
 
         yield [
             ['value' => '@package\s+MyPackage$'],
-            "\n@package MyPackage\n",
+            self::wrapComment("@package\tMyPackage"),
             true,
         ];
+    }
+
+    static private function wrapComment(string $comment): string
+    {
+        return "/**\n" . str_replace("\n", "\n * ", $comment) . "\n */";
     }
 
     /**
