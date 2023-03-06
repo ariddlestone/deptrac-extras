@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+$autoloadPaths = [
+    $GLOBALS['_composer_autoload_path'] ?? null,
+    implode(DIRECTORY_SEPARATOR, [getcwd(), 'vendor', 'autoload.php']),
+    implode(DIRECTORY_SEPARATOR, [__DIR__, 'vendor', 'autoload.php']),
+];
+
+foreach ($autoloadPaths as $autoloadPath) {
+    if (is_string($autoloadPath) && is_file($autoloadPath)) {
+        require_once $autoloadPath;
+        require_once implode(DIRECTORY_SEPARATOR, [dirname($autoloadPath), 'qossmic', 'deptrac', 'deptrac.php']);
+        break;
+    }
+}
